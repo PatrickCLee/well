@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+
+        body {
+            background-color: black;
+            font-weight: bold;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .workingTable {
+            border: rgba(0, 0, 0, 0) 20px solid;
+            border-spacing: 0px;
+        }
+
+        table.workingTable {
+            padding-top: 30px;
+            box-sizing: border-box;
+            /*上方新增*/
+        }
+
+        th.workingTable {
+            box-sizing: border-box;
+            height: 100px;
+            padding: 0px;
+        }
+
+        td.workingTable {
+            box-sizing: border-box;
+            width: 120px;
+            height: 85px;
+            padding: 0px;
+
+        }
+
+        /*上方新增 整個*/
+        table {
+            margin: auto;
+        }
+
+        #hint {
+            color: black;
+            font-size: 3rem;
+            text-shadow: 0 0 5px;
+            font-weight: bold;
+            background-color: white;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin: auto;
+            border-radius: 10%;
+            box-sizing: border-box;
+            /*上方新增*/
+            white-space: nowrap;
+            display: block;
+            width: 100px;
+            height: 60px;
+            line-height: 55px;
+        }
+
+        button {
+            font-family: 'Noto Sans TC', sans-serif;
+            white-space: nowrap;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            box-sizing: border-box;
+            padding: 0px;
+            border: 0px;
+        }
+
+        .workingButton {
+            font-size: 2rem;
+            border-radius: 10%;
+            text-shadow: 0 0 5px;
+            background-color: white;
+            background-size: cover;
+            color: black;
+            width: 80px;
+            height: 45px;
+            line-height: 42px;
+        }
+
+        #countDownP {
+            width: 300px;
+            height: 30px;
+            color: white;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+            font-size: 1.5rem;
+            position: fixed;
+            text-align: right;
+            box-sizing: border-box;
+            top: 3px;
+        }
+
+        #workingDiv {
+            background-image: url("bg/bg.jpg");
+        }
+
+        div {
+            position: fixed;
+            text-align: center;
+            left: 0px;
+            right: 0px;
+            margin: auto;
+            border-radius: 3%;
+            width: 300px;
+            background-size: cover;
+            color: rgba(255, 255, 255, 0.800);
+            height: 350px;
+        }
+
+        #frontPageDiv {
+            color: white;
+            background-image: url('bg/fpBackground.jpg');
+        }
+
+        #frontPageDiv>p {
+            width: 170px;
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            margin: auto;
+            color: rgba(0, 0, 0, 0.6);
+            background: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.0))
+        }
+
+        #fpDivImg {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            margin-right: 5px;
+        }
+
+        #frontPageDiv>#showMode {
+            top: 98px;
+            width: 200px;
+        }
+
+        #frontPageDiv>#showBackground {
+            top: 177px;
+        }
+
+        .fpButton {
+            color: white;
+            margin-top: 35px;
+            font-size: 1.5em;
+            border: 0px;
+            padding: 3px 10px;
+            background: linear-gradient(to bottom right,
+                    black, rgba(121, 121, 121, 0.3));
+        }
+
+        .fpButton:hover,
+        .exampleButton:hover,
+        .okButton:hover {
+            animation: slide 0.2s 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes slide {
+            0% {
+                background:
+                    linear-gradient(to bottom right,
+                        rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1),
+                        rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.5),
+                        rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+            }
+
+            25% {
+                background:
+                    linear-gradient(to bottom right,
+                        rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.75),
+                        rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.75),
+                        rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.25));
+            }
+
+            50% {
+                background:
+                    linear-gradient(to bottom right,
+                        rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.5),
+                        rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1),
+                        rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.5));
+            }
+
+            75% {
+                background:
+                    linear-gradient(to bottom right,
+                        rgba(255, 255, 255, 0.125), rgba(255, 255, 255, 0.25),
+                        rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.75),
+                        rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.75));
+            }
+
+            100% {
+                background:
+                    linear-gradient(to bottom right,
+                        rgba(255, 255, 255, 1),
+                        rgba(255, 255, 255, 0),
+                        rgba(255, 255, 255, 1));
+            }
+        }
+
+        #modeDiv {
+            top: -350px;
+            background-image: url('bg/modeBackground.jpg');
+            transition: top 0.8s ease;
+        }
+
+        .modeTable {
+            border: 0px;
+            border-spacing: 0px;
+        }
+
+        th.modeTable {
+            padding: 30px 20px 20px 20px;
+            font-size: 1.6rem;
+        }
+
+        td.modeTable {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-top: 30px;
+            padding-bottom: 5px;
+        }
+
+
+
+        #exampleDiv {
+            visibility: hidden;
+
+        }
+
+        .exampleButton {
+            margin-top: 5px;
+            font-size: 1rem;
+            border: 0px;
+            background: linear-gradient(to bottom right,
+                    black, rgba(121, 121, 121, 0.3));
+            width: 100px;
+        }
+
+        .okButton {
+            width: 45px;
+            height: 30px;
+            line-height: 25px;
+            font-size: 1.5rem;
+            border: 0px;
+            background: linear-gradient(to bottom right,
+                    black, rgba(121, 121, 121, 0.3));
+        }
+
+        .modeRadio {
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+        }
+
+        #backgroundDiv {
+            left: -800px;
+            right: 1500px;
+
+            background-image: url('bg/blurbg.jpg');
+            background-position-x: -10px;
+            transition: left 0.8s ease, right 0.8s ease;
+        }
+
+        #backgroundDiv th {
+            padding: 30px 20px 20px 20px;
+            font-size: 1.6rem;
+        }
+
+        #backgroundDiv td {
+            padding-top: 45px;
+            font-size: 1.3rem;
+        }
+
+        #hiddenDiv {
+
+            background-image: url("img/3.png");
+            transition: 'background-image'0s linear;
+        }
+
+        #ggMovieDiv,
+        #ggreDiv {
+            visibility: hidden;
+        }
+
+        #ggMovieDiv {
+            transition: right 0.8s ease, left 0.8s ease;
+        }
+
+        #ggreDiv {
+            background-image: url("bg/ggreDiv.jpg");
+        }
+
+        #ggreDiv th {
+            font-size: 2.5rem;
+            padding: 10px 0px 0px 0px;
+            color: rgba(255, 0, 0, 0.8);
+
+        }
+
+        #ggreDiv tr:nth-child(2) td:first-child {
+            padding-top: 0px;
+        }
+
+        #ggreDiv tr:not(:first-child):not(:nth-child(2)) {
+            font-size: 1.5rem;
+        }
+
+        #ggreDiv td {
+            padding: 10px 0px;
+        }
+
+        #ggreDiv tr:not(:first-child):not(:nth-child(2)):hover {
+            color: tomato;
+            cursor: pointer;
+        }
+
+        #ggreDiv tr:nth-child(3) td {
+            padding-top: 30px;
+        }
+
+        #ggreDivNum {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 0 0 5px;
+        }
+
+        #ggreDivP {
+            position: absolute;
+            top: 50%;
+            font-size: 1.3rem;
+            padding: 0px;
+            line-height: 20px;
+            margin: 3px;
+            left: 0px;
+            right: 0px;
+            background: -webkit-linear-gradient(45deg, rgb(72, 255, 0), rgb(255, 0, 0), rgb(72, 255, 0));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+
+            animation: goText 3s linear infinite;
+        }
+
+        @keyframes goText {
+            to {
+                background-position: 200%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio src="mp3/yes.mp3" id="sndYes"></audio>
+    <audio src="mp3/no.mp3" id="sndNo"></audio>
+    <audio src="mp3/coin-flip-shimmer.mp3" id="sndClick"></audio>
+    <audio src="mp3/Nujabes.mp3" id="bgMusic"></audio>
+    <audio src="mp3/nogood.mp3" id="ggnogood"></audio>
+    <audio src="mp3/dobetter.mp3" id="ggdobetter"></audio>
+    <audio src="mp3/great.mp3" id="gggreat"></audio>
+    <div id="workingDiv">
+        <p id="countDownP">
+            倒數：3秒
+        </p>
+        <table class="workingTable">
+            <tr class="workingTable">
+                <th colspan="2" class="workingTable">
+                    <span id="hint">顏色</span>
+                </th>
+            </tr>
+            <tr class="workingTable">
+                <td class="workingTable">
+                    <button onclick="showAns(opt1)" id="opt1" class="workingButton">顏色</button>
+                </td>
+                <td class="workingTable">
+                    <button onclick="showAns(opt2)" id="opt2" class="workingButton">顏色</button>
+                </td>
+            </tr>
+            <tr class="workingTable">
+                <td class="workingTable">
+                    <button onclick="showAns(opt3)" id="opt3" class="workingButton">顏色</button>
+                </td>
+                <td class="workingTable">
+                    <button onclick="showAns(opt4)" id="opt4" class="workingButton">顏色</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="hiddenDiv"></div>
+    <div id="ggMovieDiv"></div>
+    <div id="ggreDiv">
+        <p id="ggreDivP">跟我阿嬤一樣厲害!</p>
+        <table>
+            <tr>
+                <th>遊戲結束</th>
+            </tr>
+            <tr>
+                <td id="ggreDivNum">
+                    作答XX:XX
+                    <br>
+                    答對XX:XX
+                </td>
+            </tr>
+            <tr>
+                <td onclick="playAgain()">再玩一次</td>
+            </tr>
+            <tr>
+                <td onclick="backToFp()">回到首頁</td>
+            </tr>
+        </table>
+    </div>
+    <div id="frontPageDiv">
+        <p id="showMode">預設模式：看字色、選字義</p>
+        <p id="showBackground">預設背景：星空</p>
+        <div id="fpDivImg" onclick="playMusic()" style="background-image: url('img/off.jpg');"></div>
+        <h2>腦袋打個結</h2>
+        <table>
+            <tr>
+                <td><button class="fpButton" onclick="showMenu(1)">選擇模式</button></td>
+            </tr>
+            <tr>
+                <td><button class="fpButton" onclick="showMenu(2)">選擇背景</button></td>
+            </tr>
+            <tr>
+                <td><button class="fpButton" onclick="play()">開始遊戲</button></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="modeDiv">
+        <table class="modeTable">
+            <tr class="modeTable">
+                <th class="modeTable">
+                    選擇遊戲模式
+                </th>
+            </tr>
+            <tr class="modeTable">
+                <td class="modeTable">
+                    <label for="hintCol_OptTxt" class="modeLabel">看字色、選字義</label>
+                    <input type="radio" name="modeSwitch" class="modeRadio" id="hintCol_OptTxt">
+                    <br>
+                    <button onclick="showExample(1)" class="exampleButton">點我看範例</button>
+                </td>
+            </tr>
+
+            <tr class="modeTable">
+                <td class="modeTable">
+                    <label for="hintTxt_OptCol" class="modeLabel">看字義、選字色</label>
+                    <input type="radio" name="modeSwitch" class="modeRadio" id="hintTxt_OptCol">
+                    <br>
+                    <button onclick="showExample(2)" class="exampleButton">點我看範例</button>
+                </td>
+            </tr>
+            <tr class="modeTable">
+                <td class="modeTable" style="padding-top: 20px;">
+                    <button onclick="goBack(1)" class="okButton">OK</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="exampleDiv" onclick="exampleHidden()"></div>
+    <div id="backgroundDiv">
+        <table>
+            <tr>
+                <th>選擇遊戲背景</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="muscle">肌肉猛男</label>
+                    <input type="radio" name="background" class="modeRadio" id="muscle" onclick="showBlurBg(1)">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="swimsuit">泳裝美女</label>
+                    <input type="radio" name="background" class="modeRadio" id="swimsuit" onclick="showBlurBg(2)">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="goBack(2)" class="okButton">OK</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+
+    <script>
+        function Obj(txt, txtNum, col, colNum, baC, baCNum, dom) {
+            this.txt = txt;
+            this.txtNum = txtNum;
+            this.col = col;
+            this.colNum = colNum;
+            this.baC = baC;
+            this.baCNum = baCNum;
+            this.dom = dom;
+        }
+        var dom_hint = document.getElementById("hint");
+        var dom_opt1 = document.getElementById("opt1");
+        var dom_opt2 = document.getElementById("opt2");
+        var dom_opt3 = document.getElementById("opt3");
+        var dom_opt4 = document.getElementById("opt4");
+
+        var hint = new Obj("test", 2, 0xffffff, 1, 0xffffff, 0, dom_hint);
+        var opt1 = new Obj("test", 1, 0xffffff, 0, 0xffffff, 0, dom_opt1);
+        var opt2 = new Obj("test", 0, 0xffffff, 2, 0xffffff, 0, dom_opt2);
+        var opt3 = new Obj("test", 0, 0xffffff, 0, 0xffffff, 0, dom_opt3);
+        var opt4 = new Obj("test", 0, 0xffffff, 0, 0xffffff, 0, dom_opt4);
+
+        // 答題對錯數的variable
+        var ansRight = 0;
+        var quesTotal = 0;
+
+        // 抓audio
+        var sndYes = document.getElementById("sndYes");
+        var sndNo = document.getElementById("sndNo");
+        var sndClick = document.getElementById("sndClick");
+        var ggnogood = document.getElementById("ggnogood");
+        var ggdobetter = document.getElementById("ggdobetter");
+        var gggreat = document.getElementById("gggreat");
+
+        // 倒數秒數variable
+        var sec = 3;
+        function timer() {
+            countDownP.innerHTML = '倒數：' + sec + '秒';
+            sec -= 1;
+        }
+        var timerOut;   // 因為要停止且更新倒數，需為global Variable給不同funciton使用
+
+        // 遊戲模式variable 讓assignAns和showAns決定怎麼運作
+        var mode1 = true; // 預設模式
+        var mode2;
+
+        // 背景variable 讓goback和changeBackground用
+        var bg1;
+        var bg2;
+
+        // 答題按鈕 
+        function showAns(obj) {
+            if (mode1) {
+                if (obj.txtNum == hint.colNum) {
+                    sndYes.load();
+                    sndYes.play();
+                    ansRight += 1;
+                    obj.dom.style.backgroundImage = 'url(\'img/yes.jpg\')';
+                    obj.dom.style.color = 'rgba(0,0,0,0)';
+                    document.getElementById("hint").style.visibility = "hidden";
+                    // 答對後暫時隱藏題目
+                }
+                else {
+                    sndNo.load();
+                    sndNo.play();
+                    obj.dom.style.backgroundImage = 'url(\'img/no.jpg\')';
+                    obj.dom.style.color = 'rgba(0,0,0,0)';
+                }
+            } else if (mode2) {
+                if (obj.colNum == hint.txtNum) {
+                    sndYes.load();
+                    sndYes.play();
+                    ansRight += 1;
+                    obj.dom.style.backgroundImage = 'url(\'img/yes.jpg\')';
+                    obj.dom.style.color = 'rgba(0,0,0,0)';
+                    document.getElementById("hint").style.visibility = "hidden";
+                    // 答對後暫時隱藏題目
+                }
+                else {
+                    sndNo.load();
+                    sndNo.play();
+                    obj.dom.style.backgroundImage = 'url(\'img/no.jpg\')';
+                    obj.dom.style.color = 'rgba(0,0,0,0)';
+                }
+            }
+            document.getElementById("opt1").disabled = true;
+            document.getElementById("opt2").disabled = true;
+            document.getElementById("opt3").disabled = true;
+            document.getElementById("opt4").disabled = true;
+            clearInterval(start);    //按鈕後停止運作直到下面的setTimeout
+            clearInterval(timerOut); //按鈕後倒數暫停
+
+            setTimeout(function () {
+                wholePackage();
+                start = setInterval(wholePackage, 3000);
+                // 上方3000為每題答題時間
+            }, 0800);
+            // 上方0800為答題後回饋顯示時間
+            console.log(quesTotal);
+        }
+
+        // 給setInterval和clearInterval的變數
+        var start;
+
+        // '開始遊戲'按鈕
+        function play() {
+            bg1 = document.getElementById("muscle").checked;
+            bg2 = document.getElementById("swimsuit").checked;
+            if (bg1) {
+                workingDiv.style.backgroundImage = "url(\'bg/man.jpg\')";
+            } else if (bg2) {
+                workingDiv.style.backgroundImage = "url(\'bg/girl.jpg\')";
+            } else {
+                workingDiv.style.backgroundImage = "url(\'bg/bg.jpg\')";
+            }
+            frontPageDiv.style.visibility = 'hidden';
+
+            document.getElementById("hiddenDiv").style.visibility = "visible";
+            setTimeout(function () {
+                hiddenDiv.style.backgroundImage = "url(\'img/2.png\')";
+                setTimeout(function () {
+                    hiddenDiv.style.backgroundImage = "url(\'img/1.png\')";
+                    setTimeout(function () {
+                        hiddenDiv.style.visibility = "hidden";
+                        hiddenDiv.style.backgroundImage = "url(\'img/3.png\')";
+                    }, 1000)
+                }, 1000)
+            }, 1000);                                   // 播放倒數
+
+            setTimeout(function () {
+                wholePackage();
+                start = setInterval(wholePackage, 3000);
+                setTimeout(function () {                // 停止遊戲
+                    clearInterval(start);               // 停止wholePackage的運作
+                    clearInterval(timerOut);            // 停止倒數
+                }, 31000)                               // 總遊戲時間加上按鈕回饋時間後停止
+            }, 3000);                                   // 3秒後執行因上方code倒數三秒
+            setTimeout(function () {
+                ggMovieDiv.style.visibility = "visible";
+                if (ansRight <= 5) {
+                    ggMovieDiv.style.backgroundImage = "url(\'img/nogood.gif\')";
+                    ggnogood.play();
+                    ggreDivP.innerText = "跟我阿嬤一樣厲害!"
+                } else if (ansRight <= 9) {
+                    ggMovieDiv.style.backgroundImage = "url(\'img/dobetter.gif\')";
+                    ggdobetter.play();
+                    ggreDivP.innerText = "比我阿嬤要強一點，加油!"
+                } else if (ansRight > 9) {
+                    ggMovieDiv.style.backgroundImage = "url(\'img/great.gif\')";
+                    gggreat.play();
+                    ggreDivP.innerText = "哇!我阿嬤一定不是你的對手"
+                }
+
+                setTimeout(function () {
+                    ggMovieDiv.style.right = "-800px";
+                    ggMovieDiv.style.left = "1500px";
+                    setTimeout(function () {
+                        ggMovieDiv.style.visibility = "hidden";
+                        ggMovieDiv.style.right = "0px";
+                        ggMovieDiv.style.left = "0px";
+                    }, 1000)
+                    ggreDiv.style.visibility = "visible";
+                    ggreDivNum.innerHTML = "作答題數：" + (quesTotal - 1) + "<br>" + "答對題數：" + ansRight;
+                }, 3000)                         // 顯示3秒ggMovie動畫就隱藏
+            }, 33000)                             // 真正總遊戲時間=此處時間-倒數時間
+        }                                        
+
+        // 再玩一次
+        function playAgain() {
+            backToFp();
+            play();
+        }
+
+        // 回到首頁
+        function backToFp() {
+            ggnogood.load();
+            ggdobetter.load();
+            gggreat.load();
+            ggreDiv.style.visibility = "hidden";
+            ansRight = 0;
+            quesTotal = 0;
+            var loopy = ["hint", "opt1", "opt2", "opt3", "opt4"];
+            for (var i = 0; i <= 4; i++) {
+                document.getElementById(loopy[i]).innerText = "顏色";
+                document.getElementById(loopy[i]).style.color = "black";
+                document.getElementById(loopy[i]).style.backgroundColor = "white";
+            }
+            countDownP.innerHTML = '倒數：' + '3秒';
+            frontPageDiv.style.visibility = "visible";
+
+        }
+
+        // 選擇背景選項時換backgroundDiv的背景
+        function showBlurBg(num) {
+            switch (num) {
+                case 1:
+                    backgroundDiv.style.backgroundImage = "url(\'bg/blurbg_m.jpg\')";
+                    break;
+                case 2:
+                    backgroundDiv.style.backgroundImage = "url(\'bg/blurbg_f.jpg\')";
+                    break;
+            }
+        }
+
+
+        // 播放背景音樂
+        function playMusic() {
+            var bg = fpDivImg.style.backgroundImage;
+            if (bg == "url(\"img/off.jpg\")") {
+                fpDivImg.style.backgroundImage = "url(\'img/on.jpg\')";
+                bgMusic.play();
+            }
+            else if (bg == "url(\"img/on.jpg\")") {
+                fpDivImg.style.backgroundImage = "url(\'img/off.jpg\')";
+                bgMusic.load();
+            }
+        }
+
+        // 從frontPage連到兩種Menu
+        function showMenu(num) {
+            switch (num) {
+                case 1:
+                    modeDiv.style.top = "8px";
+                    sndClick.load();
+                    sndClick.play();
+                    break;
+                case 2:
+                    backgroundDiv.style.left = "0px";
+                    backgroundDiv.style.right = "0px";
+                    sndClick.load();
+                    sndClick.play();
+                    break;
+            }
+        }
+
+        // 關掉各個選單div回到fp  case 1:modeDiv  case 2:backgroundDiv
+        function goBack(num) {
+            switch (num) {
+                case 1:
+                    modeDiv.style.top = "-350px";
+                    sndClick.load();
+                    sndClick.play();
+                    mode1 = document.getElementById("hintCol_OptTxt").checked;
+                    mode2 = document.getElementById("hintTxt_OptCol").checked;
+                    if (mode1) {
+                        showMode.innerText = '模式：看字色、選字義';
+                        showMode.style.width = "170px";
+                    } else if (mode2) {
+                        showMode.innerText = '模式：看字義、選字色';
+                        showMode.style.width = "170px";
+                    }
+                    break;
+                case 2:
+                    backgroundDiv.style.left = "-800px";
+                    backgroundDiv.style.right = "1500px";
+                    sndClick.load();
+                    sndClick.play();
+                    bg1 = document.getElementById("muscle").checked;
+                    bg2 = document.getElementById("swimsuit").checked;
+                    if (bg1) {
+                        showBackground.innerText = '背景：肌肉猛男';
+                        workingDiv.style.backgroundImage = "url(\'bg/man.jpg\')";
+                    } else if (bg2) {
+                        showBackground.innerText = '背景：泳裝美女';
+                        workingDiv.style.backgroundImage = "url(\'bg/girl.jpg\')";
+                    }
+                    break;
+            }
+        }
+
+        // 顯示範例
+        function showExample(num) {
+            switch (num) {
+                case 1:
+                    document.getElementById("exampleDiv").style.visibility = 'visible';
+                    exampleDiv.style.backgroundImage = 'url(\"img/example.jpg\")';
+                    break;
+                case 2:
+                    document.getElementById("exampleDiv").style.visibility = 'visible';
+                    exampleDiv.style.backgroundImage = "url(\'img/example2.jpg\')";
+                    break;
+            }
+        }
+
+        // 關閉範例
+        function exampleHidden() {
+            exampleDiv.style.visibility = 'hidden';
+        }
+
+        // 若要新增玩法模式 設一個變數？ 跟著選項更改值
+        // 再在此設if變數的值為N時 執行哪個assignAns()
+        function wholePackage() {
+            document.getElementById("hint").style.visibility = "unset";
+            document.getElementById("opt1").disabled = false;
+            document.getElementById("opt2").disabled = false;
+            document.getElementById("opt3").disabled = false;
+            document.getElementById("opt4").disabled = false;
+            changeBackground();
+            assignColor(hint);
+            assignColor(opt1);
+            assignColor(opt2);
+            assignColor(opt3);
+            assignColor(opt4);
+            assignAns();
+            clearInterval(timerOut);    //如果沒有按鈕暫停倒數的話，下一題時也停止倒數
+            setTimeout(function () {
+                sec = 3;
+                setTimeout(timer, 0000);
+                timerOut = setInterval(timer, 1000);    //重新倒數讀秒
+            }, 0000);
+            quesTotal += 1;             //總題數
+        }
+
+        // 答對換背景
+        function changeBackground() {
+            bg1 = document.getElementById("muscle").checked;
+            bg2 = document.getElementById("swimsuit").checked;
+            if (bg1) {
+                switch (ansRight) {
+                    case 1: workingDiv.style.backgroundImage = "url(\'bg/man1.jpg\')"; break;
+                    case 2: workingDiv.style.backgroundImage = "url(\'bg/man2.jpg\')"; break;
+                    case 3: workingDiv.style.backgroundImage = "url(\'bg/man3.jpg\')"; break;
+                    case 4: workingDiv.style.backgroundImage = "url(\'bg/man4.jpg\')"; break;
+                    case 5: workingDiv.style.backgroundImage = "url(\'bg/man5.jpg\')"; break;
+                    case 6: workingDiv.style.backgroundImage = "url(\'bg/man6.jpg\')"; break;
+                    case 7: workingDiv.style.backgroundImage = "url(\'bg/man7.jpg\')"; break;
+                    case 8: workingDiv.style.backgroundImage = "url(\'bg/man8.jpg\')"; break;
+                    case 9: workingDiv.style.backgroundImage = "url(\'bg/man9.jpg\')"; break;
+                    case 10: workingDiv.style.backgroundImage = "url(\'bg/man10.jpg\')"; break;
+                    case 11: workingDiv.style.backgroundImage = "url(\'bg/man11.jpg\')"; break;
+                    case 12: workingDiv.style.backgroundImage = "url(\'bg/man12.jpg\')"; break;
+                    case 13: workingDiv.style.backgroundImage = "url(\'bg/man13.jpg\')"; break;
+                    case 14: workingDiv.style.backgroundImage = "url(\'bg/man14.jpg\')"; break;
+                    case 15: workingDiv.style.backgroundImage = "url(\'bg/man15.jpg\')"; break;
+                    case 16: workingDiv.style.backgroundImage = "url(\'bg/man16.jpg\')"; break;
+                }
+            }
+            else if (bg2) {
+                switch (ansRight) {
+                    case 1: workingDiv.style.backgroundImage = "url(\'bg/girl1.jpg\')"; break;
+                    case 2: workingDiv.style.backgroundImage = "url(\'bg/girl2.jpg\')"; break;
+                    case 3: workingDiv.style.backgroundImage = "url(\'bg/girl3.jpg\')"; break;
+                    case 4: workingDiv.style.backgroundImage = "url(\'bg/girl4.jpg\')"; break;
+                    case 5: workingDiv.style.backgroundImage = "url(\'bg/girl5.jpg\')"; break;
+                    case 6: workingDiv.style.backgroundImage = "url(\'bg/girl6.jpg\')"; break;
+                    case 7: workingDiv.style.backgroundImage = "url(\'bg/girl7.jpg\')"; break;
+                    case 8: workingDiv.style.backgroundImage = "url(\'bg/girl8.jpg\')"; break;
+                    case 9: workingDiv.style.backgroundImage = "url(\'bg/girl9.jpg\')"; break;
+                    case 10: workingDiv.style.backgroundImage = "url(\'bg/girl10.jpg\')"; break;
+                    case 11: workingDiv.style.backgroundImage = "url(\'bg/girl11.jpg\')"; break;
+                    case 12: workingDiv.style.backgroundImage = "url(\'bg/girl12.jpg\')"; break;
+                    case 13: workingDiv.style.backgroundImage = "url(\'bg/girl13.jpg\')"; break;
+                    case 14: workingDiv.style.backgroundImage = "url(\'bg/girl14.jpg\')"; break;
+                    case 15: workingDiv.style.backgroundImage = "url(\'bg/girl15.jpg\')"; break;
+                    case 16: workingDiv.style.backgroundImage = "url(\'bg/girl16.jpg\')"; break;
+                }
+            } else {
+                switch (ansRight) {
+                    case 1: workingDiv.style.backgroundImage = "url(\'bg/bg1.jpg\')"; break;
+                    case 2: workingDiv.style.backgroundImage = "url(\'bg/bg2.jpg\')"; break;
+                    case 3: workingDiv.style.backgroundImage = "url(\'bg/bg3.jpg\')"; break;
+                    case 4: workingDiv.style.backgroundImage = "url(\'bg/bg4.jpg\')"; break;
+                    case 5: workingDiv.style.backgroundImage = "url(\'bg/bg5.jpg\')"; break;
+                    case 6: workingDiv.style.backgroundImage = "url(\'bg/bg6.jpg\')"; break;
+                    case 7: workingDiv.style.backgroundImage = "url(\'bg/bg7.jpg\')"; break;
+                    case 8: workingDiv.style.backgroundImage = "url(\'bg/bg8.jpg\')"; break;
+                    case 9: workingDiv.style.backgroundImage = "url(\'bg/bg9.jpg\')"; break;
+                    case 10: workingDiv.style.backgroundImage = "url(\'bg/bg10.jpg\')"; break;
+                    case 11: workingDiv.style.backgroundImage = "url(\'bg/bg11.jpg\')"; break;
+                    case 12: workingDiv.style.backgroundImage = "url(\'bg/bg12.jpg\')"; break;
+                    case 13: workingDiv.style.backgroundImage = "url(\'bg/bg13.jpg\')"; break;
+                    case 14: workingDiv.style.backgroundImage = "url(\'bg/bg14.jpg\')"; break;
+                    case 15: workingDiv.style.backgroundImage = "url(\'bg/bg15.jpg\')"; break;
+                }
+            }
+        }
+
+        // 隨機指定答案選項 可切換看字色選字義mode==1或看字義選字色mode==2
+        function assignAns() {
+            var ran = Math.floor(Math.random() * 4 + 1);
+            if (mode1) {
+                switch (ran) {
+                    case 1:
+                        opt1.dom.innerHTML = nintendoTxt(hint.colNum);
+                        opt1.txtNum = hint.colNum;
+                        if (opt2.txtNum == hint.colNum) {
+                            if (opt2.txtNum == 6) {
+                                opt2.dom.innerHTML = nintendoTxt(opt2.txtNum - 1);
+                                opt2.txtNum -= 1;
+                            } else {
+                                opt2.dom.innerHTML = nintendoTxt(opt2.txtNum + 1);
+                                opt2.txtNum += 1;
+                            }
+                        }
+                        if (opt3.txtNum == hint.colNum) {
+                            if (opt3.txtNum == 6) {
+                                opt3.dom.innerHTML = nintendoTxt(opt3.txtNum - 1);
+                                opt3.txtNum -= 1;
+                            } else {
+                                opt3.dom.innerHTML = nintendoTxt(opt3.txtNum + 1);
+                                opt3.txtNum += 1
+                            }
+                        }
+                        if (opt4.txtNum == hint.colNum) {
+                            if (opt4.txtNum == 6) {
+                                opt4.dom.innerHTML = nintendoTxt(opt4.txtNum - 1);
+                                opt4.txtNum -= 1
+                            } else {
+                                opt4.dom.innerHTML = nintendoTxt(opt4.txtNum + 1);
+                                opt4.txtNum += 1
+                            }
+                        }
+                        break;
+                    case 2:
+                        opt2.dom.innerHTML = nintendoTxt(hint.colNum);
+                        opt2.txtNum = hint.colNum;
+                        if (opt1.txtNum == hint.colNum) {
+                            if (opt1.txtNum == 6) {
+                                opt1.dom.innerHTML = nintendoTxt(opt1.txtNum - 1);
+                                opt1.txtNum -= 1;
+                            } else {
+                                opt1.dom.innerHTML = nintendoTxt(opt1.txtNum + 1);
+                                opt1.txtNum += 1;
+                            }
+                        }
+                        if (opt3.txtNum == hint.colNum) {
+                            if (opt3.txtNum == 6) {
+                                opt3.dom.innerHTML = nintendoTxt(opt3.txtNum - 1);
+                                opt3.txtNum -= 1;
+                            } else {
+                                opt3.dom.innerHTML = nintendoTxt(opt3.txtNum + 1);
+                                opt3.txtNum += 1
+                            }
+                        }
+                        if (opt4.txtNum == hint.colNum) {
+                            if (opt4.txtNum == 6) {
+                                opt4.dom.innerHTML = nintendoTxt(opt4.txtNum - 1);
+                                opt4.txtNum -= 1
+                            } else {
+                                opt4.dom.innerHTML = nintendoTxt(opt4.txtNum + 1);
+                                opt4.txtNum += 1
+                            }
+                        }
+                        break;
+                    case 3:
+                        opt3.dom.innerHTML = nintendoTxt(hint.colNum);
+                        opt3.txtNum = hint.colNum;
+                        if (opt2.txtNum == hint.colNum) {
+                            if (opt2.txtNum == 6) {
+                                opt2.dom.innerHTML = nintendoTxt(opt2.txtNum - 1);
+                                opt2.txtNum -= 1;
+                            } else {
+                                opt2.dom.innerHTML = nintendoTxt(opt2.txtNum + 1);
+                                opt2.txtNum += 1;
+                            }
+                        }
+                        if (opt1.txtNum == hint.colNum) {
+                            if (opt1.txtNum == 6) {
+                                opt1.dom.innerHTML = nintendoTxt(opt1.txtNum - 1);
+                                opt1.txtNum -= 1;
+                            } else {
+                                opt1.dom.innerHTML = nintendoTxt(opt1.txtNum + 1);
+                                opt1.txtNum += 1
+                            }
+                        }
+                        if (opt4.txtNum == hint.colNum) {
+                            if (opt4.txtNum == 6) {
+                                opt4.dom.innerHTML = nintendoTxt(opt4.txtNum - 1);
+                                opt4.txtNum -= 1
+                            } else {
+                                opt4.dom.innerHTML = nintendoTxt(opt4.txtNum + 1);
+                                opt4.txtNum += 1
+                            }
+                        }
+                        break;
+                    case 4:
+                        opt4.dom.innerHTML = nintendoTxt(hint.colNum);
+                        opt4.txtNum = hint.colNum;
+                        if (opt2.txtNum == hint.colNum) {
+                            if (opt2.txtNum == 6) {
+                                opt2.dom.innerHTML = nintendoTxt(opt2.txtNum - 1);
+                                opt2.txtNum -= 1;
+                            } else {
+                                opt2.dom.innerHTML = nintendoTxt(opt2.txtNum + 1);
+                                opt2.txtNum += 1;
+                            }
+                        }
+                        if (opt3.txtNum == hint.colNum) {
+                            if (opt3.txtNum == 6) {
+                                opt3.dom.innerHTML = nintendoTxt(opt3.txtNum - 1);
+                                opt3.txtNum -= 1;
+                            } else {
+                                opt3.dom.innerHTML = nintendoTxt(opt3.txtNum + 1);
+                                opt3.txtNum += 1
+                            }
+                        }
+                        if (opt1.txtNum == hint.colNum) {
+                            if (opt1.txtNum == 6) {
+                                opt1.dom.innerHTML = nintendoTxt(opt1.txtNum - 1);
+                                opt1.txtNum -= 1
+                            } else {
+                                opt1.dom.innerHTML = nintendoTxt(opt1.txtNum + 1);
+                                opt1.txtNum += 1
+                            }
+                        }
+                        break;
+                };
+            } else if (mode2) {
+                switch (ran) {
+                    case 1:
+                        opt1.dom.style.color = nintendoColor(hint.txtNum);
+                        opt1.colNum = hint.txtNum;
+                        if (opt1.colNum == opt1.baCNum) {
+                            if (opt1.colNum == 6) {
+                                opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum - 1);
+                                opt1.baCNum -= 1;
+                            }
+                            else {
+                                opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                opt1.baCNum += 1;
+                            }
+                        }
+                        if (opt2.colNum == hint.txtNum) {
+                            if (opt2.colNum == 6) {
+                                opt2.dom.style.color = nintendoColor(opt2.colNum - 1);
+                                opt2.colNum -= 1;
+                                if (opt2.colNum == opt2.baCNum) {
+                                    opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                    opt2.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt2.dom.style.color = nintendoColor(opt2.colNum + 1);
+                                opt2.colNum += 1;
+                                if (opt2.colNum == opt2.baCNum) {
+                                    if (opt2.colNum == 6) {
+                                        opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum - 1);
+                                        opt2.baCNum -= 1;
+                                    } else {
+                                        opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                        opt2.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt3.colNum == hint.txtNum) {
+                            if (opt3.colNum == 6) {
+                                opt3.dom.style.color = nintendoColor(opt3.colNum - 1);
+                                opt3.colNum -= 1;
+                                if (opt3.colNum == opt3.baCNum) {
+                                    opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                    opt3.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt3.dom.style.color = nintendoColor(opt3.colNum + 1);
+                                opt3.colNum += 1;
+                                if (opt3.colNum == opt3.baCNum) {
+                                    if (opt3.colNum == 6) {
+                                        opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum - 1);
+                                        opt3.baCNum -= 1;
+                                    } else {
+                                        opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                        opt3.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt4.colNum == hint.txtNum) {
+                            if (opt4.colNum == 6) {
+                                opt4.dom.style.color = nintendoColor(opt4.colNum - 1);
+                                opt4.colNum -= 1;
+                                if (opt4.colNum == opt4.baCNum) {
+                                    opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                    opt4.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt4.dom.style.color = nintendoColor(opt4.colNum + 1);
+                                opt4.colNum += 1;
+                                if (opt4.colNum == opt4.baCNum) {
+                                    if (opt4.colNum == 6) {
+                                        opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum - 1);
+                                        opt4.baCNum -= 1;
+                                    } else {
+                                        opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                        opt4.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 2:
+                        opt2.dom.style.color = nintendoColor(hint.txtNum);
+                        opt2.colNum = hint.txtNum;
+                        if (opt2.colNum == opt2.baCNum) {
+                            if (opt2.colNum == 6) {
+                                opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum - 1);
+                                opt2.baCNum -= 1;
+                            }
+                            else {
+                                opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                opt2.baCNum += 1;
+                            }
+                        }
+                        if (opt1.colNum == hint.txtNum) {
+                            if (opt1.colNum == 6) {
+                                opt1.dom.style.color = nintendoColor(opt1.colNum - 1);
+                                opt1.colNum -= 1;
+                                if (opt1.colNum == opt1.baCNum) {
+                                    opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                    opt1.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt1.dom.style.color = nintendoColor(opt1.colNum + 1);
+                                opt1.colNum += 1;
+                                if (opt1.colNum == opt1.baCNum) {
+                                    if (opt1.colNum == 6) {
+                                        opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum - 1);
+                                        opt1.baCNum -= 1;
+                                    } else {
+                                        opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                        opt1.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt3.colNum == hint.txtNum) {
+                            if (opt3.colNum == 6) {
+                                opt3.dom.style.color = nintendoColor(opt3.colNum - 1);
+                                opt3.colNum -= 1;
+                                if (opt3.colNum == opt3.baCNum) {
+                                    opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                    opt3.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt3.dom.style.color = nintendoColor(opt3.colNum + 1);
+                                opt3.colNum += 1;
+                                if (opt3.colNum == opt3.baCNum) {
+                                    if (opt3.colNum == 6) {
+                                        opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum - 1);
+                                        opt3.baCNum -= 1;
+                                    } else {
+                                        opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                        opt3.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt4.colNum == hint.txtNum) {
+                            if (opt4.colNum == 6) {
+                                opt4.dom.style.color = nintendoColor(opt4.colNum - 1);
+                                opt4.colNum -= 1;
+                                if (opt4.colNum == opt4.baCNum) {
+                                    opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                    opt4.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt4.dom.style.color = nintendoColor(opt4.colNum + 1);
+                                opt4.colNum += 1;
+                                if (opt4.colNum == opt4.baCNum) {
+                                    if (opt4.colNum == 6) {
+                                        opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum - 1);
+                                        opt4.baCNum -= 1;
+                                    } else {
+                                        opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                        opt4.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+                        opt3.dom.style.color = nintendoColor(hint.txtNum);
+                        opt3.colNum = hint.txtNum;
+                        if (opt3.colNum == opt3.baCNum) {
+                            if (opt3.colNum == 6) {
+                                opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum - 1);
+                                opt3.baCNum -= 1;
+                            }
+                            else {
+                                opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                opt3.baCNum += 1;
+                            }
+                        }
+                        if (opt2.colNum == hint.txtNum) {
+                            if (opt2.colNum == 6) {
+                                opt2.dom.style.color = nintendoColor(opt2.colNum - 1);
+                                opt2.colNum -= 1;
+                                if (opt2.colNum == opt2.baCNum) {
+                                    opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                    opt2.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt2.dom.style.color = nintendoColor(opt2.colNum + 1);
+                                opt2.colNum += 1;
+                                if (opt2.colNum == opt2.baCNum) {
+                                    if (opt2.colNum == 6) {
+                                        opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum - 1);
+                                        opt2.baCNum -= 1;
+                                    } else {
+                                        opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                        opt2.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt1.colNum == hint.txtNum) {
+                            if (opt1.colNum == 6) {
+                                opt1.dom.style.color = nintendoColor(opt1.colNum - 1);
+                                opt1.colNum -= 1;
+                                if (opt1.colNum == opt1.baCNum) {
+                                    opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                    opt1.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt1.dom.style.color = nintendoColor(opt1.colNum + 1);
+                                opt1.colNum += 1;
+                                if (opt1.colNum == opt1.baCNum) {
+                                    if (opt1.colNum == 6) {
+                                        opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum - 1);
+                                        opt1.baCNum -= 1;
+                                    } else {
+                                        opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                        opt1.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt4.colNum == hint.txtNum) {
+                            if (opt4.colNum == 6) {
+                                opt4.dom.style.color = nintendoColor(opt4.colNum - 1);
+                                opt4.colNum -= 1;
+                                if (opt4.colNum == opt4.baCNum) {
+                                    opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                    opt4.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt4.dom.style.color = nintendoColor(opt4.colNum + 1);
+                                opt4.colNum += 1;
+                                if (opt4.colNum == opt4.baCNum) {
+                                    if (opt4.colNum == 6) {
+                                        opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum - 1);
+                                        opt4.baCNum -= 1;
+                                    } else {
+                                        opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                        opt4.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 4:
+                        opt4.dom.style.color = nintendoColor(hint.txtNum);
+                        opt4.colNum = hint.txtNum;
+                        if (opt4.colNum == opt4.baCNum) {
+                            if (opt4.colNum == 6) {
+                                opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum - 1);
+                                opt4.baCNum -= 1;
+                            }
+                            else {
+                                opt4.dom.style.backgroundColor = nintendoColor(opt4.baCNum + 1);
+                                opt4.baCNum += 1;
+                            }
+                        }
+                        if (opt2.colNum == hint.txtNum) {
+                            if (opt2.colNum == 6) {
+                                opt2.dom.style.color = nintendoColor(opt2.colNum - 1);
+                                opt2.colNum -= 1;
+                                if (opt2.colNum == opt2.baCNum) {
+                                    opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                    opt2.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt2.dom.style.color = nintendoColor(opt2.colNum + 1);
+                                opt2.colNum += 1;
+                                if (opt2.colNum == opt2.baCNum) {
+                                    if (opt2.colNum == 6) {
+                                        opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum - 1);
+                                        opt2.baCNum -= 1;
+                                    } else {
+                                        opt2.dom.style.backgroundColor = nintendoColor(opt2.baCNum + 1);
+                                        opt2.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt3.colNum == hint.txtNum) {
+                            if (opt3.colNum == 6) {
+                                opt3.dom.style.color = nintendoColor(opt3.colNum - 1);
+                                opt3.colNum -= 1;
+                                if (opt3.colNum == opt3.baCNum) {
+                                    opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                    opt3.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt3.dom.style.color = nintendoColor(opt3.colNum + 1);
+                                opt3.colNum += 1;
+                                if (opt3.colNum == opt3.baCNum) {
+                                    if (opt3.colNum == 6) {
+                                        opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum - 1);
+                                        opt3.baCNum -= 1;
+                                    } else {
+                                        opt3.dom.style.backgroundColor = nintendoColor(opt3.baCNum + 1);
+                                        opt3.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (opt1.colNum == hint.txtNum) {
+                            if (opt1.colNum == 6) {
+                                opt1.dom.style.color = nintendoColor(opt1.colNum - 1);
+                                opt1.colNum -= 1;
+                                if (opt1.colNum == opt1.baCNum) {
+                                    opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                    opt1.baCNum += 1;
+                                }
+                            }
+                            else {
+                                opt1.dom.style.color = nintendoColor(opt1.colNum + 1);
+                                opt1.colNum += 1;
+                                if (opt1.colNum == opt1.baCNum) {
+                                    if (opt1.colNum == 6) {
+                                        opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum - 1);
+                                        opt1.baCNum -= 1;
+                                    } else {
+                                        opt1.dom.style.backgroundColor = nintendoColor(opt1.baCNum + 1);
+                                        opt1.baCNum += 1;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        // 代表亂數的variable
+        var vtxt;
+        var vcol;
+        var vbaC;
+
+        // 亂數製造機 確保字色和背景色不相同
+        function randomGenerator() {
+            vtxt = Math.floor(Math.random() * 6 + 1);
+            vcol = Math.floor(Math.random() * 6 + 1);
+            vbaC = Math.floor(Math.random() * 6 + 1);
+            if (vcol == vbaC && vcol == 6) {
+                vcol -= 1;
+            } else if (vcol == vbaC) {
+                vcol += 1
+            }
+        }
+
+        // 給文字用的switch
+        function nintendoTxt(vari) {
+            switch (vari) {
+                case 1:
+                    return "紅色";
+                case 2:
+                    return "橘色";
+                case 3:
+                    return "黃色";
+                case 4:
+                    return "綠色";
+                case 5:
+                    return "藍色";
+                case 6:
+                    return "紫色";
+
+            }
+        }
+
+        // 給顏色用的switch
+        function nintendoColor(vari) {
+            switch (vari) {
+                case 1:
+                    return "RED";
+                case 2:
+                    return "ORANGE";
+                case 3:
+                    return "YELLOW";
+                case 4:
+                    return "#009628";
+                case 5:
+                    return "BLUE";
+                case 6:
+                    return "#c300ff";
+
+            }
+        }
+
+        // 指派隨機顏色
+        function assignColor(theObje) {
+            theObje.dom.style.backgroundImage = '';
+            // 上方新增
+            randomGenerator();
+            theObje.dom.innerHTML = nintendoTxt(vtxt);
+            theObje.txtNum = vtxt;
+            theObje.dom.style.color = nintendoColor(vcol);
+            theObje.colNum = vcol;
+            theObje.dom.style.backgroundColor = nintendoColor(vbaC);
+            theObje.baCNum = vbaC;
+        }
+
+    </script>
+
+</body>
+
+</html>
