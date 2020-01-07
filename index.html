@@ -140,6 +140,7 @@
         }
 
         #frontPageDiv>#showMode {
+            white-space: nowrap;
             top: 98px;
             width: 200px;
         }
@@ -208,7 +209,7 @@
         }
 
         #modeDiv {
-            top: -350px;
+            top: -100%;
             background-image: url('bg/modeBackground.jpg');
             transition: top 0.8s ease;
         }
@@ -263,8 +264,8 @@
         }
 
         #backgroundDiv {
-            left: -800px;
-            right: 1500px;
+            left: -100%;
+            right: 100%;
 
             background-image: url('bg/blurbg.jpg');
             background-position-x: -10px;
@@ -739,7 +740,7 @@
         function goBack(num) {
             switch (num) {
                 case 1:
-                    modeDiv.style.top = "-350px";
+                    modeDiv.style.top = "-100%";
                     sndClick.load();
                     sndClick.play();
                     mode1 = document.getElementById("hintCol_OptTxt").checked;
@@ -753,8 +754,8 @@
                     }
                     break;
                 case 2:
-                    backgroundDiv.style.left = "-800px";
-                    backgroundDiv.style.right = "1500px";
+                    backgroundDiv.style.left = "-100%";
+                    backgroundDiv.style.right = "100%";
                     sndClick.load();
                     sndClick.play();
                     bg1 = document.getElementById("muscle").checked;
